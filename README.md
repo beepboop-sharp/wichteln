@@ -2,8 +2,10 @@
 
 Statische Wichtel-Seite für GitHub Pages – kein Server, keine Datenbank.
 
+👉 **Live: https://beepboop-sharp.github.io/wichteln/**
+
 ## Benutzung
-1. Seite öffnen, Namen eintragen, optional Ausschlüsse (z.B. Paare) festlegen.
+1. [Seite öffnen](https://beepboop-sharp.github.io/wichteln/), Namen eintragen, optional Ausschlüsse (z.B. Paare) festlegen.
 2. **Auslosen** klicken.
 3. Jedem seinen persönlichen Link schicken (Kopieren / Teilen).
 4. Wer den Link öffnet, sieht nur die eigene Ziehung – mit Geschenk-Animation.
@@ -13,6 +15,7 @@ Achtung: Wird neu ausgelost, funktionieren alte Links weiterhin, zeigen aber die
 
 ## Deployment
 Repo pushen → GitHub → **Settings → Pages** → *Deploy from a branch* → `main` / `/ (root)`.
+Jeder Push auf `main` wird automatisch nach https://beepboop-sharp.github.io/wichteln/ deployt.
 
 ## Sicherheit & Datenschutz
 - **Kein Server, keine Datenbank.** Nichts wird gespeichert oder übertragen. Namen/Ausschlüsse liegen nur im Browser des Organisators (localStorage), das Ziehungsergebnis nirgends.
