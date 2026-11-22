@@ -8,7 +8,7 @@ Statische Wichtel-Seite für GitHub Pages – kein Server, keine Datenbank.
 3. Jedem seinen persönlichen Link schicken (Kopieren / Teilen).
 4. Wer den Link öffnet, sieht nur die eigene Ziehung – mit Geschenk-Animation.
 
-Die Ziehung steckt verschlüsselt im Link (hinter dem `#`) und wird nirgends gespeichert.
+Die Ziehung steckt verschleiert im Link (hinter dem `#`) und wird nirgends gespeichert.
 Achtung: Wird neu ausgelost, funktionieren alte Links weiterhin, zeigen aber die alte Ziehung – also nur einmal auslosen und dann verschicken.
 
 ## Deployment
