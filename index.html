@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+  <meta name="theme-color" content="#0c3326">
   <title>Wichteln 🎄</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,9 +19,13 @@
     <!-- Organisator: Namen eintragen & auslosen -->
     <section id="setup" class="frame" hidden>
       <div class="card">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+
+        <p class="eyebrow">Frohe Weihnachten</p>
         <h1>Wichteln</h1>
-        <p class="sub">Namen eintragen, auslosen, Links verschicken – fertig.</p>
-        <div class="divider"></div>
+        <p class="sub">Namen eintragen, auslosen, Links verschicken.</p>
+        <div class="divider"><span>✧ ✦ ✧</span></div>
 
         <label class="field">
           <span>Titel (optional)</span>
@@ -40,20 +45,21 @@
           <select id="exA" aria-label="Person A"></select>
           <span class="amp">&amp;</span>
           <select id="exB" aria-label="Person B"></select>
-          <button class="btn" type="submit">+</button>
+          <button class="btn btn-icon" type="submit" aria-label="Ausschluss hinzufügen">+</button>
         </form>
         <ul id="exclusions" class="chips"></ul>
 
-        <div class="divider"></div>
-        <button id="drawBtn" class="btn btn-gold big" type="button">🎁 Auslosen</button>
+        <div class="divider"><span>✧ ✦ ✧</span></div>
+        <button id="drawBtn" class="btn btn-gold big" type="button">Auslosen</button>
         <p id="error" class="error" role="alert"></p>
 
         <div id="result" hidden>
           <h2>Links verschicken</h2>
           <p class="hint">Jeder bekommt nur seinen eigenen Link. Wer wen gezogen hat, siehst auch du nicht –
-            also keine fremden Links öffnen 😉</p>
+            also keine fremden Links öffnen 😉<br>
+            Bitte jeden Link <strong>einzeln</strong> verschicken – nicht alle in eine Gruppe posten.</p>
           <ul id="links" class="links"></ul>
-          <button id="copyAll" class="btn" type="button">📋 Alle Links kopieren</button>
+          <button id="copyAll" class="btn wide" type="button">Alle Links kopieren</button>
         </div>
       </div>
     </section>
@@ -61,20 +67,46 @@
     <!-- Teilnehmer: persönlicher Link -->
     <section id="reveal" class="frame" hidden>
       <div class="card center">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+
+        <p class="eyebrow" id="eventTitle">Frohe Weihnachten</p>
         <h1 id="hello">Hallo!</h1>
-        <p class="sub" id="eventTitle"></p>
-        <div class="divider"></div>
+        <p class="sub">Dein Wichtel wartet auf dich.</p>
+        <div class="divider"><span>✧ ✦ ✧</span></div>
 
         <div class="gift idle" id="gift">
-          <div class="note" id="note">
+          <div class="glow"></div>
+          <div class="rays"></div>
+          <div class="note">
             <span class="note-label">Du beschenkst</span>
             <strong id="receiver"></strong>
+            <span class="note-orn">✦</span>
           </div>
-          <div class="box"></div>
-          <div class="lid"><div class="bow"></div><div class="knot"></div></div>
+          <div class="floor-shadow"></div>
+          <div class="box"><div class="ribbon-h"></div><div class="ribbon-v"></div></div>
+          <div class="lid">
+            <div class="ribbon-v"></div>
+            <svg class="bow" viewBox="0 0 120 70" aria-hidden="true">
+              <defs>
+                <linearGradient id="bowGold" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#fff3c4"/>
+                  <stop offset=".45" stop-color="#d9b44a"/>
+                  <stop offset="1" stop-color="#8a6a1f"/>
+                </linearGradient>
+              </defs>
+              <path d="M60 52 C40 26 6 16 9 41 C12 61 42 59 60 52Z" fill="url(#bowGold)" stroke="#6e5313" stroke-width="1.2"/>
+              <path d="M60 52 C80 26 114 16 111 41 C108 61 78 59 60 52Z" fill="url(#bowGold)" stroke="#6e5313" stroke-width="1.2"/>
+              <path d="M58 51 C44 38 22 32 21 42 C21 51 42 54 58 51Z" fill="rgba(70,45,5,.35)"/>
+              <path d="M62 51 C76 38 98 32 99 42 C99 51 78 54 62 51Z" fill="rgba(70,45,5,.35)"/>
+              <path d="M14 34 C22 24 36 26 46 36" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2" stroke-linecap="round"/>
+              <path d="M106 34 C98 24 84 26 74 36" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="2" stroke-linecap="round"/>
+              <ellipse cx="60" cy="52" rx="10" ry="9" fill="url(#bowGold)" stroke="#6e5313" stroke-width="1.2"/>
+            </svg>
+          </div>
         </div>
 
-        <button id="openBtn" class="btn btn-gold big" type="button">🎁 Geschenk öffnen</button>
+        <button id="openBtn" class="btn btn-gold big" type="button">Geschenk öffnen</button>
         <p class="hint" id="afterHint" hidden>Pssst … nicht verraten! 🤫</p>
       </div>
     </section>
@@ -82,6 +114,9 @@
     <!-- Ungültiger Link -->
     <section id="invalid" class="frame" hidden>
       <div class="card center">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <p class="eyebrow">Frohe Weihnachten</p>
         <h1>Oh je!</h1>
         <p class="sub">Dieser Link ist ungültig oder unvollständig. Bitte frag nochmal nach deinem Link.</p>
       </div>

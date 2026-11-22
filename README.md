@@ -13,3 +13,11 @@ Achtung: Wird neu ausgelost, funktionieren alte Links weiterhin, zeigen aber die
 
 ## Deployment
 Repo pushen → GitHub → **Settings → Pages** → *Deploy from a branch* → `main` / `/ (root)`.
+
+## Sicherheit & Datenschutz
+- **Kein Server, keine Datenbank.** Nichts wird gespeichert oder übertragen. Namen/Ausschlüsse liegen nur im Browser des Organisators (localStorage), das Ziehungsergebnis nirgends.
+- **Jeder Link enthält nur die eigene Paarung** (Geber → Empfänger) – andere Paarungen sind daraus nicht ableitbar.
+- Der Teil hinter `#` wird vom Browser **nie an einen Server gesendet** (auch nicht an GitHub).
+- Die Kodierung ist **Verschleierung, keine Verschlüsselung**: Wer einen Link hat, kann dessen Inhalt sehen. Also: Links einzeln verschicken, nicht in Gruppen posten.
+- Der Organisator hat alle Links und könnte sie theoretisch öffnen – ohne Server nicht vermeidbar.
+- Schriften sind selbst gehostet, keine Drittanbieter-Requests; strikte Content-Security-Policy, `no-referrer`, `noindex`.

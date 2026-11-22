@@ -160,7 +160,7 @@ function renderLinks(pairs) {
     const copyBtn = document.createElement('button');
     copyBtn.className = 'btn';
     copyBtn.type = 'button';
-    copyBtn.textContent = '📋 Kopieren';
+    copyBtn.textContent = 'Kopieren';
     copyBtn.addEventListener('click', () => copy(url, copyBtn));
     li.append(name, copyBtn);
 
@@ -168,7 +168,7 @@ function renderLinks(pairs) {
       const shareBtn = document.createElement('button');
       shareBtn.className = 'btn';
       shareBtn.type = 'button';
-      shareBtn.textContent = '📤 Teilen';
+      shareBtn.textContent = 'Teilen';
       shareBtn.addEventListener('click', () => {
         navigator.share({ title: 'Wichteln 🎄', text: shareText(pair.g, url) }).catch(() => {});
       });
@@ -254,7 +254,7 @@ function confetti() {
 function initReveal(data) {
   $('reveal').hidden = false;
   $('hello').textContent = `Hallo ${data.g}!`;
-  $('eventTitle').textContent = data.t ? `${data.t} – dein Wichtel wartet 🎄` : 'Dein Wichtel wartet 🎄';
+  if (data.t) $('eventTitle').textContent = data.t;
   $('receiver').textContent = data.r;
   document.title = `Wichteln – ${data.g} 🎄`;
 
@@ -280,17 +280,61 @@ function snow() {
   const count = window.innerWidth < 600 ? 35 : 70;
   for (let i = 0; i < count; i++) {
     const flake = document.createElement('span');
-    const size = 2 + Math.random() * 5;
+    const size = 2 + Math.random() * 6;
     const duration = 8 + Math.random() * 12;
     flake.style.width = flake.style.height = size + 'px';
     flake.style.left = Math.random() * 100 + 'vw';
     flake.style.opacity = 0.3 + Math.random() * 0.6;
+    if (size > 5) flake.style.filter = 'blur(1px)';
     flake.style.animationDuration = duration + 's';
     flake.style.animationDelay = -Math.random() * duration + 's';
     flake.style.setProperty('--x', Math.random() * 80 - 40 + 'px');
     box.append(flake);
   }
 }
+
+/* ---------- Lichterkette am oberen Rahmen ---------- */
+function garland() {
+  document.querySelectorAll('.frame:not([hidden])').forEach((frame) => {
+    let g = frame.querySelector('.garland');
+    if (!g) {
+      g = document.createElement('div');
+      g.className = 'garland';
+      g.setAttribute('aria-hidden', 'true');
+      frame.prepend(g);
+    }
+    const inset = 22, y0 = 7, sag = 24;
+    const width = frame.clientWidth;
+    const swags = width < 480 ? 2 : 3;
+    const seg = (width - inset * 2) / swags;
+    const perSwag = 6;
+    const colors = ['warm', 'red', 'gold'];
+
+    let path = `M${inset} ${y0}`;
+    let bulbs = '';
+    let k = 0;
+    let hooks = '';
+    for (let i = 0; i <= swags; i++) hooks += `<circle cx="${inset + seg * i}" cy="${y0}" r="3.2" fill="url(#hookGold)" stroke="#6e5313" stroke-width=".8"/>`;
+    for (let i = 0; i < swags; i++) {
+      const x0 = inset + seg * i;
+      path += ` Q${x0 + seg / 2} ${y0 + sag * 2} ${x0 + seg} ${y0}`;
+      for (let j = 1; j < perSwag; j++) {
+        const t = j / perSwag;
+        const x = x0 + seg * t;
+        const y = y0 + 4 * t * (1 - t) * sag;
+        bulbs += `<span class="bulb ${colors[k % 3]}" style="left:${x}px;top:${y}px;animation-delay:${-((k * 0.73) % 3)}s"></span>`;
+        k++;
+      }
+    }
+    g.innerHTML = `<svg width="${width}" height="${y0 + sag + 4}"><path d="${path}" fill="none" stroke="#1b2a20" stroke-width="2" stroke-linecap="round"/><path d="${path}" fill="none" stroke="rgba(255,255,255,.12)" stroke-width=".8" transform="translate(0,-.6)"/><defs><radialGradient id="hookGold" cx=".35" cy=".3"><stop offset="0" stop-color="#fff3c4"/><stop offset="1" stop-color="#a8841f"/></radialGradient></defs>${hooks}</svg>${bulbs}`;
+  });
+}
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(garland, 150);
+});
 
 /* ---------- Start ---------- */
 snow();
@@ -302,3 +346,4 @@ if (hash) {
 } else {
   initSetup();
 }
+garland();
