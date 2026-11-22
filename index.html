@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Wichteln 🎄</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="snow" aria-hidden="true"></div>
+  <div id="confetti" aria-hidden="true"></div>
+
+  <main>
+    <!-- Organisator: Namen eintragen & auslosen -->
+    <section id="setup" class="frame" hidden>
+      <div class="card">
+        <h1>Wichteln</h1>
+        <p class="sub">Namen eintragen, auslosen, Links verschicken – fertig.</p>
+        <div class="divider"></div>
+
+        <label class="field">
+          <span>Titel (optional)</span>
+          <input id="title" maxlength="60" placeholder="z.B. Familien-Wichteln 2026">
+        </label>
+
+        <h2>Teilnehmer</h2>
+        <form id="addForm" class="row">
+          <input id="nameInput" maxlength="40" placeholder="Name" autocomplete="off">
+          <button class="btn" type="submit">Hinzufügen</button>
+        </form>
+        <ul id="names" class="chips"></ul>
+
+        <h2>Ausschlüsse</h2>
+        <p class="hint">Diese beiden ziehen sich nicht gegenseitig (z.B. Paare).</p>
+        <form id="exForm" class="row">
+          <select id="exA" aria-label="Person A"></select>
+          <span class="amp">&amp;</span>
+          <select id="exB" aria-label="Person B"></select>
+          <button class="btn" type="submit">+</button>
+        </form>
+        <ul id="exclusions" class="chips"></ul>
+
+        <div class="divider"></div>
+        <button id="drawBtn" class="btn btn-gold big" type="button">🎁 Auslosen</button>
+        <p id="error" class="error" role="alert"></p>
+
+        <div id="result" hidden>
+          <h2>Links verschicken</h2>
+          <p class="hint">Jeder bekommt nur seinen eigenen Link. Wer wen gezogen hat, siehst auch du nicht –
+            also keine fremden Links öffnen 😉</p>
+          <ul id="links" class="links"></ul>
+          <button id="copyAll" class="btn" type="button">📋 Alle Links kopieren</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teilnehmer: persönlicher Link -->
+    <section id="reveal" class="frame" hidden>
+      <div class="card center">
+        <h1 id="hello">Hallo!</h1>
+        <p class="sub" id="eventTitle"></p>
+        <div class="divider"></div>
+
+        <div class="gift idle" id="gift">
+          <div class="note" id="note">
+            <span class="note-label">Du beschenkst</span>
+            <strong id="receiver"></strong>
+          </div>
+          <div class="box"></div>
+          <div class="lid"><div class="bow"></div><div class="knot"></div></div>
+        </div>
+
+        <button id="openBtn" class="btn btn-gold big" type="button">🎁 Geschenk öffnen</button>
+        <p class="hint" id="afterHint" hidden>Pssst … nicht verraten! 🤫</p>
+      </div>
+    </section>
+
+    <!-- Ungültiger Link -->
+    <section id="invalid" class="frame" hidden>
+      <div class="card center">
+        <h1>Oh je!</h1>
+        <p class="sub">Dieser Link ist ungültig oder unvollständig. Bitte frag nochmal nach deinem Link.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

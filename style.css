@@ -1,0 +1,311 @@
+:root {
+  --green: #0f3d2e;
+  --green-dark: #08261c;
+  --green-light: #1a5a43;
+  --red: #b3122e;
+  --red-dark: #7a1020;
+  --gold: #d4af37;
+  --gold-light: #f3d77a;
+  --cream: #fffaf0;
+  --stripes: repeating-linear-gradient(45deg, var(--red) 0 14px, #fff 14px 28px);
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Lato", system-ui, sans-serif;
+  color: var(--cream);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(212, 175, 55, .08) 0 2px, transparent 3px) 0 0 / 90px 90px,
+    radial-gradient(circle at 50% 0%, var(--green-light) 0%, var(--green) 45%, var(--green-dark) 100%) fixed;
+  overflow-x: hidden;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+/* ---------- Rahmen mit Zuckerstangen-Spirale ---------- */
+.frame {
+  padding: 12px;
+  border-radius: 24px;
+  background: var(--stripes);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .5);
+}
+
+.card {
+  padding: 2rem 1.6rem;
+  border: 2px solid var(--gold);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(212, 175, 55, .12), transparent 60%),
+    var(--green);
+}
+
+.center { text-align: center; }
+
+h1, h2 {
+  font-family: "Mountains of Christmas", cursive;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 9vw, 3.8rem);
+  text-align: center;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold) 55%, #a8841f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .5));
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin: 1.6rem 0 .6rem;
+}
+
+.sub { text-align: center; margin: .3rem 0 0; opacity: .9; }
+.hint { font-size: .92rem; opacity: .8; margin: 0 0 .7rem; }
+
+.divider {
+  height: 10px;
+  margin: 1.4rem 0;
+  border-radius: 5px;
+  background: var(--stripes);
+  background-size: 40px 40px;
+  border: 1px solid var(--gold);
+}
+
+/* ---------- Formulare ---------- */
+.field { display: block; margin-top: .5rem; }
+.field span { display: block; font-size: .9rem; color: var(--gold-light); margin-bottom: .3rem; }
+
+.row { display: flex; gap: .5rem; align-items: center; }
+.row input, .row select { flex: 1; min-width: 0; }
+
+input, select {
+  width: 100%;
+  padding: .7rem .8rem;
+  font: inherit;
+  color: var(--red-dark);
+  background: var(--cream);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  outline: none;
+}
+input:focus, select:focus { box-shadow: 0 0 0 3px rgba(212, 175, 55, .45); }
+
+.amp { font-family: "Mountains of Christmas", cursive; font-size: 1.6rem; color: var(--gold); }
+
+.btn {
+  padding: .7rem 1.1rem;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(180deg, var(--red), var(--red-dark));
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform .1s, filter .2s;
+}
+.btn:hover { filter: brightness(1.15); }
+.btn:active { transform: scale(.97); }
+.btn:disabled { opacity: .5; cursor: default; }
+
+.btn-gold {
+  color: var(--red-dark);
+  background: linear-gradient(180deg, var(--gold-light), var(--gold));
+  border-color: #fff;
+}
+.big { display: block; width: 100%; font-size: 1.25rem; padding: 1rem; }
+
+.error { color: #ffb3b3; font-weight: 700; text-align: center; min-height: 1.2em; margin: .8rem 0 0; }
+
+/* ---------- Chips ---------- */
+.chips { list-style: none; padding: 0; margin: .8rem 0 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.chips li {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .35rem .5rem .35rem .85rem;
+  color: var(--red-dark);
+  font-weight: 700;
+  background: var(--cream);
+  border: 2px solid var(--gold);
+  border-radius: 999px;
+}
+.chips button {
+  width: 1.5rem; height: 1.5rem;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: #fff;
+  background: var(--red);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* ---------- Link-Liste ---------- */
+.links { list-style: none; padding: 0; margin: 0 0 1rem; display: grid; gap: .5rem; }
+.links li {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem .7rem;
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(212, 175, 55, .5);
+  border-radius: 10px;
+}
+.links strong { flex: 1; font-size: 1.1rem; overflow-wrap: anywhere; }
+.links .btn { padding: .45rem .8rem; font-size: .9rem; }
+
+/* ---------- Geschenk ---------- */
+.gift {
+  position: relative;
+  width: 220px;
+  height: 330px;
+  margin: 0 auto 1.5rem;
+}
+.gift.idle { animation: wiggle 2.8s ease-in-out infinite; }
+.gift.shake { animation: shake .9s ease-in-out; }
+
+.box {
+  position: absolute;
+  bottom: 0; left: 15px;
+  width: 190px; height: 150px;
+  z-index: 2;
+  border-radius: 6px;
+  background:
+    linear-gradient(90deg, transparent 80px, var(--gold) 80px 110px, transparent 110px),
+    linear-gradient(180deg, #9c1a2e, #6d0e1c);
+  box-shadow: inset 0 -12px 22px rgba(0, 0, 0, .35), 0 12px 25px rgba(0, 0, 0, .45);
+}
+
+.lid {
+  position: absolute;
+  bottom: 145px; left: 5px;
+  width: 210px; height: 42px;
+  z-index: 3;
+  border-radius: 6px;
+  background:
+    linear-gradient(90deg, transparent 90px, var(--gold) 90px 120px, transparent 120px),
+    linear-gradient(180deg, var(--red), #8b1426);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .35);
+  transition: transform 1s cubic-bezier(.5, -.4, .6, 1), opacity 1s;
+}
+
+.bow { position: absolute; left: 50%; top: -34px; width: 0; }
+.bow::before, .bow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 44px; height: 30px;
+  border: 9px solid var(--gold);
+  border-radius: 50%;
+}
+.bow::before { left: -60px; transform: rotate(-18deg); }
+.bow::after  { left: -2px;  transform: rotate(18deg); }
+.knot {
+  position: absolute;
+  left: 50%; top: -14px;
+  width: 24px; height: 24px;
+  transform: translateX(-50%);
+  background: var(--gold-light);
+  border: 3px solid var(--gold);
+  border-radius: 50%;
+}
+
+.note {
+  position: absolute;
+  left: 30px; bottom: 25px;
+  width: 160px; min-height: 115px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .3rem;
+  padding: .8rem .6rem;
+  color: var(--red-dark);
+  background: repeating-linear-gradient(180deg, var(--cream) 0 22px, #f1e6cf 22px 23px);
+  border: 2px solid var(--gold);
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .4);
+  transition: transform 1.2s cubic-bezier(.2, .8, .25, 1.15) .35s;
+}
+.note-label { font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; }
+.note strong {
+  font-family: "Mountains of Christmas", cursive;
+  font-size: 2rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.gift.open .lid  { transform: translate(140px, -90px) rotate(50deg); opacity: 0; }
+.gift.open .note { transform: translateY(-180px) scale(1.2); }
+
+@keyframes wiggle {
+  0%, 80%, 100% { transform: rotate(0); }
+  85% { transform: rotate(-3deg); }
+  90% { transform: rotate(3deg); }
+  95% { transform: rotate(-2deg); }
+}
+@keyframes shake {
+  0%, 100% { transform: rotate(0) scale(1); }
+  15% { transform: rotate(-8deg) scale(1.03); }
+  30% { transform: rotate(8deg) scale(1.05); }
+  45% { transform: rotate(-7deg) scale(1.06); }
+  60% { transform: rotate(7deg) scale(1.07); }
+  75% { transform: rotate(-4deg) scale(1.05); }
+  90% { transform: rotate(2deg) scale(1.02); }
+}
+
+/* ---------- Schnee & Konfetti ---------- */
+#snow, #confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+#confetti { z-index: 5; }
+
+#snow span {
+  position: absolute;
+  top: -10px;
+  background: #fff;
+  border-radius: 50%;
+  animation: snow linear infinite;
+}
+@keyframes snow {
+  to { transform: translate(var(--x), 105vh); }
+}
+
+#confetti i {
+  position: absolute;
+  top: -20px;
+  width: 9px; height: 15px;
+  border-radius: 2px;
+  animation: confetti linear forwards;
+}
+@keyframes confetti {
+  to { transform: translate(var(--drift), 110vh) rotate(var(--rot)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #snow { display: none; }
+  .gift.idle { animation: none; }
+}
+
+@media (max-width: 420px) {
+  .card { padding: 1.5rem 1rem; }
+  .row .btn { padding: .7rem .8rem; }
+}
